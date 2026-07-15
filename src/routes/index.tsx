@@ -1,7 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import portrait from "@/assets/portrait.jpg";
-import workLuxe from "@/assets/work-luxeliving.jpg";
-import workFin from "@/assets/work-finflow.jpg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -27,14 +24,12 @@ const works = [
     year: "2025",
     title: "LuxeLiving Ecosystem",
     desc: "A premium end-to-end e-commerce experience for high-end furniture retail — from editorial storefront to native mobile companion.",
-    img: workLuxe,
   },
   {
     tag: "Fintech",
     year: "2024",
     title: "FinFlow Pro Dashboard",
     desc: "Complex data visualization suite for enterprise asset management, prioritizing clarity, density, and calm under pressure.",
-    img: workFin,
   },
 ];
 
@@ -125,14 +120,8 @@ function Index() {
             </div>
 
             <figure className="relative">
-              <div className="aspect-[4/5] overflow-hidden rounded-sm bg-muted">
-                <img
-                  src={portrait}
-                  alt="Portrait of Favour"
-                  width={1024}
-                  height={1280}
-                  className="h-full w-full object-cover grayscale-[15%]"
-                />
+              <div className="flex aspect-[4/5] items-center justify-center rounded-sm border border-border bg-muted/60">
+                <span className="text-eyebrow text-muted-foreground">Fig. 01 — The Author</span>
               </div>
               <figcaption className="text-eyebrow absolute -bottom-4 left-4 bg-background px-3 py-1 text-muted-foreground">
                 Fig. 01 — The Author
@@ -174,15 +163,8 @@ function Index() {
                 key={w.title}
                 className={`group ${i === 1 ? "md:mt-24" : ""}`}
               >
-                <div className="aspect-[4/5] overflow-hidden rounded-sm bg-muted">
-                  <img
-                    src={w.img}
-                    alt={w.title}
-                    loading="lazy"
-                    width={1024}
-                    height={1280}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+                <div className="flex aspect-[4/5] items-center justify-center rounded-sm border border-border bg-muted/60 transition-colors group-hover:bg-muted">
+                  <span className="text-eyebrow text-muted-foreground">{w.title}</span>
                 </div>
                 <div className="mt-6 flex items-center justify-between">
                   <span className="text-eyebrow text-secondary">{w.tag}</span>
