@@ -1,4 +1,7 @@
+import { useState, useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { toast } from "sonner";
+import { submitContact } from "../lib/chats";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -13,24 +16,8 @@ const nav = [
 
 const stats = [
   { value: "05+", label: "Years Experience" },
-  { value: "40+", label: "Projects Done" },
-  { value: "12", label: "Design Awards" },
+  { value: "10+", label: "Projects Done" },
   { value: "0%", label: "Ego Included" },
-];
-
-const works = [
-  {
-    tag: "Mobile & Web",
-    year: "2025",
-    title: "LuxeLiving Ecosystem",
-    desc: "A premium end-to-end e-commerce experience for high-end furniture retail — from editorial storefront to native mobile companion.",
-  },
-  {
-    tag: "Fintech",
-    year: "2024",
-    title: "FinFlow Pro Dashboard",
-    desc: "Complex data visualization suite for enterprise asset management, prioritizing clarity, density, and calm under pressure.",
-  },
 ];
 
 const expertise = [
@@ -55,6 +42,38 @@ const expertise = [
 ];
 
 function Index() {
+  const [submitting, setSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+
+    const form = new FormData(e.currentTarget);
+    const data = {
+      name: form.get("name") as string,
+      email: form.get("email") as string,
+      message: form.get("message") as string,
+    };
+
+    if (!data.name || !data.email || !data.message) {
+      toast.error("Please fill out all fields.");
+      setSubmitting(false);
+      return;
+    }
+
+    try {
+      await submitContact(data);
+      toast.success("Message sent! I'll get back to you soon.");
+      formRef.current?.reset();
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong. Try again later.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* NAV */}
@@ -97,9 +116,7 @@ function Index() {
                   Favour<span className="text-secondary">.</span>
                 </h1>
                 <p className="mt-10 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-                  Crafting digital experiences that balance structural integrity
-                  with contemporary flair. Specialized in editorial-style
-                  minimalism and fluid user interactions.
+                  Crafting digital experiences that balance structural integrity. Specialized in editorial-style
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <a
@@ -119,14 +136,11 @@ function Index() {
               </div>
             </div>
 
-            <figure className="relative">
-              <div className="flex aspect-[4/5] items-center justify-center rounded-sm border border-border bg-muted/60">
-                <span className="text-eyebrow text-muted-foreground">Fig. 01 — The Author</span>
-              </div>
-              <figcaption className="text-eyebrow absolute -bottom-4 left-4 bg-background px-3 py-1 text-muted-foreground">
-                Fig. 01 — The Author
-              </figcaption>
-            </figure>
+            <img
+              src="/images/profile.png"
+              alt="Favour"
+              className="aspect-[4/5] w-full rounded-sm border border-border object-cover"
+            />
           </div>
         </section>
 
@@ -158,22 +172,28 @@ function Index() {
           </div>
 
           <div className="grid gap-12 md:grid-cols-2 md:gap-10">
-            {works.map((w, i) => (
-              <article
-                key={w.title}
-                className={`group ${i === 1 ? "md:mt-24" : ""}`}
-              >
-                <div className="flex aspect-[4/5] items-center justify-center rounded-sm border border-border bg-muted/60 transition-colors group-hover:bg-muted">
-                  <span className="text-eyebrow text-muted-foreground">{w.title}</span>
-                </div>
-                <div className="mt-6 flex items-center justify-between">
-                  <span className="text-eyebrow text-secondary">{w.tag}</span>
-                  <span className="text-eyebrow text-muted-foreground">{w.year}</span>
-                </div>
-                <h3 className="text-title-lg mt-3">{w.title}</h3>
-                <p className="mt-3 max-w-md text-muted-foreground">{w.desc}</p>
-              </article>
-            ))}
+            <article className="group">
+              <div className="aspect-[4/5] rounded-sm border border-border bg-muted/60 transition-colors group-hover:bg-muted" />
+              <div className="mt-6 flex items-center justify-between">
+                <span className="text-eyebrow text-secondary">Project</span>
+                <span className="text-eyebrow text-muted-foreground">2025</span>
+              </div>
+              <h3 className="text-title-lg mt-3">Coming Soon</h3>
+              <p className="mt-3 max-w-md text-muted-foreground">
+                This portfolio is still being filled with case studies.
+              </p>
+            </article>
+            <article className="group md:mt-24">
+              <div className="aspect-[4/5] rounded-sm border border-border bg-muted/60 transition-colors group-hover:bg-muted" />
+              <div className="mt-6 flex items-center justify-between">
+                <span className="text-eyebrow text-secondary">Project</span>
+                <span className="text-eyebrow text-muted-foreground">2025</span>
+              </div>
+              <h3 className="text-title-lg mt-3">Stay Tuned</h3>
+              <p className="mt-3 max-w-md text-muted-foreground">
+                More projects will appear here soon.
+              </p>
+            </article>
           </div>
         </section>
 
@@ -231,10 +251,10 @@ function Index() {
                 <div>
                   <p className="text-eyebrow text-muted-foreground">Email Directly</p>
                   <a
-                    href="mailto:hello@favour.studio"
+                    href="mailto:comfortfavour128@gmail.com"
                     className="text-title-lg mt-2 block transition-colors hover:text-secondary"
                   >
-                    hello@favour.studio
+                    comfortfavour128@gmail.com
                   </a>
                 </div>
                 <div>
@@ -244,7 +264,7 @@ function Index() {
                 <div>
                   <p className="text-eyebrow mb-3 text-muted-foreground">Find me elsewhere</p>
                   <div className="flex flex-wrap gap-6 text-sm">
-                    {["GitHub", "LinkedIn", "Dribbble", "Twitter"].map((s) => (
+                    {["GitHub", "Twitter"].map((s) => (
                       <a
                         key={s}
                         href="#"
@@ -259,7 +279,8 @@ function Index() {
             </div>
 
             <form
-              onSubmit={(e) => e.preventDefault()}
+              ref={formRef}
+              onSubmit={handleSubmit}
               className="rounded-sm border border-border bg-background p-8 md:p-10"
             >
               <div className="space-y-8">
@@ -269,10 +290,11 @@ function Index() {
               </div>
               <button
                 type="submit"
-                className="text-eyebrow mt-10 inline-flex w-full items-center justify-center gap-3 rounded-full bg-foreground px-6 py-4 text-background transition-transform hover:-translate-y-0.5"
+                disabled={submitting}
+                className="text-eyebrow mt-10 inline-flex w-full items-center justify-center gap-3 rounded-full bg-foreground px-6 py-4 text-background transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Send Message
-                <span aria-hidden>→</span>
+                {submitting ? "Sending..." : "Send Message"}
+                <span aria-hidden>{submitting ? "" : "→"}</span>
               </button>
             </form>
           </div>
@@ -309,7 +331,7 @@ function Index() {
             Favour<span className="text-secondary">.</span>
           </p>
           <p className="text-eyebrow">
-            © {new Date().getFullYear()} — Designed &amp; Built with Care
+            &copy; {new Date().getFullYear()} — Designed &amp; Built with Care
           </p>
         </div>
       </footer>

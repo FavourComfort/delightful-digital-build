@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Toaster } from "../components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -81,18 +82,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Editorial-minded designer & developer crafting digital experiences with structural integrity and contemporary flair.",
+          "Editorial-minded designer & developer crafting digital experiences with structural integrity.",
       },
       { property: "og:title", content: "Favour — Designer & Developer" },
       {
         property: "og:description",
         content:
-          "Editorial-minded designer & developer crafting digital experiences with structural integrity and contemporary flair.",
+          "Editorial-minded designer & developer crafting digital experiences with structural integrity.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Favour — Designer & Developer" },
-      { name: "twitter:description", content: "Editorial-minded designer & developer crafting digital experiences with structural integrity and contemporary flair." },
+      { name: "twitter:description", content: "Editorial-minded designer & developer crafting digital experiences with structural integrity." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/07ac9368-8752-46ab-8269-4cbb94909cee/id-preview-f4d822ba--760ca8ed-3007-42a3-b585-9378a087530f.lovable.app-1784143170776.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/07ac9368-8752-46ab-8269-4cbb94909cee/id-preview-f4d822ba--760ca8ed-3007-42a3-b585-9378a087530f.lovable.app-1784143170776.png" },
     ],
@@ -138,7 +139,8 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-    </QueryClientProvider>
+          <Outlet />
+          <Toaster />
+        </QueryClientProvider>
   );
 }
