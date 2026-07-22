@@ -27,7 +27,6 @@ const expertise = [
       "UI/UX Strategy",
       "Visual Identity",
       "Design Systems",
-      "Editorial Layouts",
     ],
   },
   {
@@ -110,7 +109,7 @@ function Index() {
               <div>
                 <p className="text-eyebrow mb-8 flex items-center gap-3 text-muted-foreground">
                   <span className="inline-block h-px w-10 bg-foreground" />
-                  Designer &amp; Developer — Est. 2026
+                             Designer &amp; Developer — Est. 2026
                 </p>
                 <h1 className="text-display">
                   Favour<span className="text-secondary">.</span>
