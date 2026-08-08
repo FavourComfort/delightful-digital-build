@@ -1,7 +1,8 @@
 import { useState, useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { submitContact } from "../lib/chats";
+
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string;
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -48,29 +49,25 @@ function Index() {
     e.preventDefault();
     setSubmitting(true);
 
-    const form = new FormData(e.currentTarget);
-    const data = {
-      name: form.get("name") as string,
-      email: form.get("email") as string,
-      message: form.get("message") as string,
-    };
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "014536fa-72f7-4dcb-9538-404781b8cb38")
 
-    if (!data.name || !data.email || !data.message) {
-      toast.error("Please fill out all fields.");
-      setSubmitting(false);
-      return;
-    }
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
 
-    try {
-      await submitContact(data);
+    const data = await response.json();
+
+    if (data.success) {
       toast.success("Message sent! I'll get back to you soon.");
       formRef.current?.reset();
-    } catch (err) {
-      console.error(err);
+    } else {
+      console.error(data);
       toast.error("Something went wrong. Try again later.");
-    } finally {
-      setSubmitting(false);
     }
+
+    setSubmitting(false);
   }
 
   return (
