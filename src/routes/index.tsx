@@ -135,7 +135,7 @@ function Index() {
             <img
               src="/images/profile.png"
               alt="Favour"
-              className="aspect-[4/5] w-full rounded-sm border border-border object-cover"
+              className="w-full rounded-sm border border-border"
             />
           </div>
         </section>
