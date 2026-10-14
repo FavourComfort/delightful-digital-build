@@ -8,6 +8,7 @@ import {
   Check,
   Clock,
   Code,
+  Github,
   Layers,
   Mail,
   MapPin,
@@ -289,6 +290,22 @@ function Index() {
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="inline-flex size-11 items-center justify-center rounded-full border border-border text-olive">
+                    <Github className="size-5" aria-hidden />
+                  </span>
+                  <div>
+                    <p className="text-eyebrow text-muted-foreground">GitHub</p>
+                    <a
+                      href="https://github.com/FavourComfort"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-1 block font-medium hover:text-olive"
+                    >
+                      github.com/FavourComfort
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="inline-flex size-11 items-center justify-center rounded-full border border-border text-olive">
                     <MapPin className="size-5" aria-hidden />
                   </span>
                   <div>
@@ -339,6 +356,16 @@ function Index() {
             Favour<span className="text-secondary">.</span>
           </p>
           <p>&copy; {new Date().getFullYear()} — Designed &amp; Built with Care</p>
+          <a
+            href="https://github.com/FavourComfort"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 hover:text-olive"
+            aria-label="Favour on GitHub"
+          >
+            <Github className="size-4" aria-hidden />
+            GitHub
+          </a>
         </div>
       </footer>
     </div>
