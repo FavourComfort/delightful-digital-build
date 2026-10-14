@@ -16,8 +16,7 @@ const nav = [
 ];
 
 const stats = [
-  { value: "05+", label: "Years Experience" },
-  { value: "10+", label: "Projects Done" },
+  { value: "04+", label: "Projects Done" },
   { value: "0%", label: "Ego Included" },
 ];
 
@@ -169,25 +168,37 @@ function Index() {
 
           <div className="grid gap-12 md:grid-cols-2 md:gap-10">
             <article className="group">
-              <div className="aspect-[4/5] rounded-sm border border-border bg-muted/60 transition-colors group-hover:bg-muted" />
-              <div className="mt-6 flex items-center justify-between">
-                <span className="text-eyebrow text-secondary">Project</span>
-                <span className="text-eyebrow text-muted-foreground">2025</span>
+              <div className="overflow-hidden rounded-sm border border-border">
+                <img
+                  src="/images/keepdearly.png"
+                  alt="KeepDearly project"
+                  className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
-              <h3 className="text-title-lg mt-3">Coming Soon</h3>
+              <div className="mt-6 flex items-center justify-between">
+                <span className="text-eyebrow text-secondary">KeepDearly</span>
+                <span className="text-eyebrow text-muted-foreground">2026</span>
+              </div>
+              <h3 className="text-title-lg mt-3">KeepDearly</h3>
               <p className="mt-3 max-w-md text-muted-foreground">
-                This portfolio is still being filled with case studies.
+                A thoughtful digital experience — crafted with care.
               </p>
             </article>
             <article className="group md:mt-24">
-              <div className="aspect-[4/5] rounded-sm border border-border bg-muted/60 transition-colors group-hover:bg-muted" />
-              <div className="mt-6 flex items-center justify-between">
-                <span className="text-eyebrow text-secondary">Project</span>
-                <span className="text-eyebrow text-muted-foreground">2025</span>
+              <div className="flex aspect-[4/5] items-center justify-center overflow-hidden rounded-sm border border-border bg-white p-8">
+                <img
+                  src="/images/ninjawo.png"
+                  alt="Ninjawo project"
+                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
-              <h3 className="text-title-lg mt-3">Stay Tuned</h3>
+              <div className="mt-6 flex items-center justify-between">
+                <span className="text-eyebrow text-secondary">Ninjawo</span>
+                <span className="text-eyebrow text-muted-foreground">2026</span>
+              </div>
+              <h3 className="text-title-lg mt-3">Ninjawo</h3>
               <p className="mt-3 max-w-md text-muted-foreground">
-                More projects will appear here soon.
+                A thoughtful digital experience — crafted with care.
               </p>
             </article>
           </div>
@@ -309,12 +320,7 @@ function Index() {
               >
                 Hire Me Today <span aria-hidden>→</span>
               </a>
-              <a
-                href="#contact"
-                className="text-eyebrow inline-flex items-center gap-3 rounded-full border border-background/40 px-6 py-4 transition-colors hover:bg-background hover:text-foreground"
-              >
-                Schedule a 15-min call
-              </a>
+            
             </div>
           </div>
         </section>
