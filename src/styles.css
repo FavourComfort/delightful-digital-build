@@ -33,6 +33,7 @@
   --color-ring: var(--ring);
   --color-paper: var(--paper);
   --color-ink: var(--ink);
+  --color-olive: var(--olive);
 }
 
 :root {
@@ -61,6 +62,7 @@
   --border: oklch(0.85 0.015 75);
   --input: oklch(0.85 0.015 75);
   --ring: oklch(0.55 0.15 45);
+  --olive: oklch(0.52 0.08 105);
 }
 
 @layer base {
